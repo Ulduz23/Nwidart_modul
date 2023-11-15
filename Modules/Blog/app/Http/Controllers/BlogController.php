@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Blog\app\Models\Blog;
+
 
 class BlogController extends Controller
 {
@@ -14,7 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blog::index');
+        $blogs = Blog::get();
+        return view('blog::index', get_defined_vars());
     }
 
     /**
