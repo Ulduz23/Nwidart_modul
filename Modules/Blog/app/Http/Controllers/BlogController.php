@@ -15,10 +15,14 @@ class BlogController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $blogs = Blog::get();
-        return view('blog::index', get_defined_vars());
-    }
+{
+    $lang = config('app.locale');
+    
+    $blogs = Blog::select("title_$lang as title", "description_$lang as description", "image")->get();
+
+    return view('blog::index', compact('blogs'));
+}
+
 
     /**
      * Show the form for creating a new resource.
