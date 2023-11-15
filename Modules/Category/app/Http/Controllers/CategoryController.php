@@ -6,16 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Category\app\Models\Category;
+
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('category::index');
+    public function index(){
+        $lang = config('app.locale');
+
+        $cats = Category::select("title_$lang as title", "description_$lang as description", "image")->get();
+
+        return view('category::index', compact('cats'));
     }
+
 
     /**
      * Show the form for creating a new resource.
