@@ -20,8 +20,8 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Blogs</span></a>
                                 <ul class="collapse">
-                                    <li><a href="{{route('blog.index')}}">Add</a></li>
-                                    <li><a href="linechart.html">List</a></li>
+                                    <li><a href="{{route('blog.create')}}">Add</a></li>
+                                    <li><a href="{{route('blog.index')}}">List</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -62,22 +62,6 @@
                 </div>
             </div>
             <!-- header area end -->
-            <!-- page title area start -->
-            <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Ana səhifə</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="index.html">Ana səhifə</a></li>
-                                <li><span>Dashboard</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            <!-- page title area end -->
             
         </div>
         <!-- main content area end -->
