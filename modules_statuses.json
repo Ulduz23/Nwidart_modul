@@ -1,0 +1,6 @@
+{
+    "Blog": true,
+    "Category": true,
+    "Product": true,
+    "Core": true
+}
