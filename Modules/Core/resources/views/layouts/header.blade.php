@@ -5,7 +5,7 @@
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
-                    <a href="{{route('core')}}"><img src="{{asset('images/icon/logo.png')}}" alt="logo"></a>
+                    <a href="{{route('core.index')}}"><img src="{{asset('images/icon/logo.png')}}" alt="logo"></a>
                 </div>
             </div>
             <div class="main-menu">
@@ -13,14 +13,14 @@
                     <nav>
                         <ul class="metismenu" id="menu">
                             <li class="active">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Ana səhifə</span></a>
+                                <a href="{{route('core.index')}}" aria-expanded="true"><i class="ti-dashboard"></i><span>Ana səhifə</span></a>
                                 
                             </li>
                             
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Blogs</span></a>
                                 <ul class="collapse">
-                                    <li><a href="barchart.html">Add</a></li>
+                                    <li><a href="{{route('blog.index')}}">Add</a></li>
                                     <li><a href="linechart.html">List</a></li>
                                 </ul>
                             </li>
