@@ -6,15 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Product\app\Models\Product;
+
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('product::index');
+    public function index(){
+        $lang = config('app.locale');
+
+        $products = Product::select("title_$lang as title", "description_$lang as description", "image")->get();
+
+        return view('product::index', get_defined_vars());
     }
 
     /**
