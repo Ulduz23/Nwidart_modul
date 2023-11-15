@@ -14,14 +14,13 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-{
-    $lang = config('app.locale');
-    
-    $blogs = Blog::select("title_$lang as title", "description_$lang as description", "image")->get();
+    public function index(){
+        $lang = config('app.locale');
+        
+        $blogs = Blog::select("title_$lang as title", "description_$lang as description", "image")->get();
 
-    return view('blog::index', compact('blogs'));
-}
+        return view('blog::index', compact('blogs'));
+    }
 
 
     /**
