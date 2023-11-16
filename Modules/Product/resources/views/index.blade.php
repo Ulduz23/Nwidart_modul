@@ -17,7 +17,7 @@
         @foreach ($products as $pr)
         <tr>
             <th scope="row">{{$pr->id}}</th>
-            <td>{{$pr->image}}</td>
+            <td><img src="{{asset($pr->image)}}" style="width: 200px; height: 100px"></td>
             <td>{{$pr->category->title}}</td>
             <td>{{$pr->title}}</td>
             <td>{{$pr->description}}</td>
@@ -30,6 +30,13 @@
 
 <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
     @csrf
+    <label for="exampleInputEmail1">Category</label>
+    <select class="form-control select2 form-select" name="cat_id" data-placeholder="Kateqoriya seçin">
+        <option label="Choose one"></option>
+        @foreach($categories as $category)
+            <option value="{{$category->id}}">{{$category->title}}</option>
+        @endforeach
+    </select>
     <div class="form-group">
       <label for="exampleInputEmail1">Title (az)</label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter" name="title_az">
