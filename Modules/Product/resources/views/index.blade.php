@@ -67,8 +67,9 @@
       </div>
       {{-- <div class="form-group">
         <label for="exampleInputEmail1">Galley</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter" name="gallery">
+        <input type="file" name="images[]" multiple>
       </div> --}}
+      
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 

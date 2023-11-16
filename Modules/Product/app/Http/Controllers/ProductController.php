@@ -10,6 +10,9 @@ use Illuminate\Http\Response;
 use Modules\Product\app\Models\Product;
 use Modules\Category\app\Models\Category;
 use Illuminate\Support\Str;
+use Modules\Product\app\Models\Gallery;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ProductController extends Controller
@@ -32,39 +35,51 @@ class ProductController extends Controller
         return view('product::index', get_defined_vars());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
+    public function create(){
         return view('product::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(ProductRequest $request)
-    {
-        $products = new Product();
-        $products->title_az = $request->title_az;
-        $products->title_en = $request->title_en;
-        $products->title_ru = $request->title_ru;
-        $products->description_az = $request->description_az;
-        $products->description_en = $request->description_en;
-        $products->description_ru = $request->description_ru;
-        $products->cat_id = $request->cat_id;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = 'product_'.Str::random(13).'.' . $image->getClientOriginalExtension();
-            $directory = 'product/';
-            $image->move($directory, $name);
-            $name = $directory.$name;
-            $products->image = $name;
-        }
-        return redirect()->back()->with($products->save() ? 'success' : 'error',true);
+    public function store(ProductRequest $request){
+    $product = new Product();
+    $product->title_az = $request->title_az;
+    $product->title_en = $request->title_en;
+    $product->title_ru = $request->title_ru;
+    $product->description_az = $request->description_az;
+    $product->description_en = $request->description_en;
+    $product->description_ru = $request->description_ru;
+    $product->cat_id = $request->cat_id;
 
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $name = 'product_' . Str::random(13) . '.' . $image->getClientOriginalExtension();
+        $directory = 'product/';
+        $image->move($directory, $name);
+        $name = $directory . $name;
+        $product->image = $name;
     }
 
+    // $product->save();
+
+    // $productId = $product->id;
+    // $images = array();
+    // if($file = $request->file('images')){
+    //     foreach($file as $file){
+    //         $image_name = md5(rand(10,100));
+    //         $ext = strtolower($file->getClientOriginalExtension());
+    //         $image_full_name = $image_name.'.'.$ext;
+    //         $uploade_path = 'gallery/';
+    //         $image_url = $uploade_path.$image_full_name;
+    //         $file->move($uploade_path,$image_full_name);
+    //         $image[] = $image_url;
+    //     }
+    //     Gallery::insert([
+    //         'image' => implode('|', $image),
+    //         'product_id' => $productId,
+    //     ]);
+    return redirect()->back()->with($product->save ? 'success' : 'error', true);
+        
+
+    }
     /**
      * Show the specified resource.
      */
