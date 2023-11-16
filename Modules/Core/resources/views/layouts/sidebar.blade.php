@@ -34,19 +34,19 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{route('core.index')}}" aria-expanded="false">
+            <a class="sidebar-link" href="{{route('product.index')}}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
-              <span class="hide-menu">Home</span>
+              <span class="hide-menu">Product</span>
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{route('core.index')}}" aria-expanded="false">
+            <a class="sidebar-link" href="{{route('category.index')}}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
-              <span class="hide-menu">Home</span>
+              <span class="hide-menu">Category</span>
             </a>
           </li>
           
