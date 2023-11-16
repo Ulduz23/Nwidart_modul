@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Product\app\Models\Product;
+use Modules\Category\app\Models\Category;
 
 
 class ProductController extends Controller
@@ -17,8 +18,13 @@ class ProductController extends Controller
     public function index(){
         $lang = config('app.locale');
 
-        $products = Product::select("title_$lang as title", "description_$lang as description", "image")->get();
-
+        
+        $products = Product::select("cat_id","title_$lang as title", "description_$lang as description", "image")
+        ->with(['category' => function ($query) use ($lang) {
+            $query->select("id", "title_$lang as title");
+        }])
+        ->get();
+    
         return view('product::index', get_defined_vars());
     }
 

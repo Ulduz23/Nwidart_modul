@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('cat_id');
-            $table->string('title_az');
-            $table->string('title_en');
-            $table->string('title_ru');
-            $table->string('description_az');
-            $table->string('description_en');
-            $table->string('description_ru');
+            $table->bigInteger('product_id');
             $table->longtext('image');
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('galleries');
     }
 };
