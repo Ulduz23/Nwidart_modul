@@ -19,7 +19,7 @@ class BlogController extends Controller
         
         $blogs = Blog::select("title_$lang as title", "description_$lang as description", "image")->get();
 
-        return view('blog::index', compact('blogs'));
+        return view('blog::index', get_defined_vars());
     }
 
 

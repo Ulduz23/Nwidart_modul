@@ -1,17 +1,24 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
-
+    
     @include('core::layouts.head')
 
 </head>
 
 <body>
-    @include('core::layouts.header')
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    @include('core::layouts.sidebar')
+    <div class="body-wrapper">
+        @include('core::layouts.header')
 
-    @yield('content')
-
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+    </div>
+  </div>
     @include('core::layouts.scripts')
 
     

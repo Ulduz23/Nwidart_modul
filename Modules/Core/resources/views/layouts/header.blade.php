@@ -1,70 +1,45 @@
-
-    <!-- page container area start -->
-    <div class="page-container">
-        <!-- sidebar menu area start -->
-        <div class="sidebar-menu">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <a href="{{route('core.index')}}"><img src="{{asset('images/icon/logo.png')}}" alt="logo"></a>
-                </div>
+<!--  Header Start -->
+<header class="app-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <ul class="navbar-nav">
+        <li class="nav-item d-block d-xl-none">
+          <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+            <i class="ti ti-menu-2"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+            <i class="ti ti-bell-ringing"></i>
+            <div class="notification bg-primary rounded-circle"></div>
+          </a>
+        </li>
+      </ul>
+      <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+              <div class="message-body">
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-user fs-6"></i>
+                  <p class="mb-0 fs-3">My Profile</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-mail fs-6"></i>
+                  <p class="mb-0 fs-3">My Account</p>
+                </a>
+                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                  <i class="ti ti-list-check fs-6"></i>
+                  <p class="mb-0 fs-3">My Task</p>
+                </a>
+                <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+              </div>
             </div>
-            <div class="main-menu">
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-                            <li class="active">
-                                <a href="{{route('core.index')}}" aria-expanded="true"><i class="ti-dashboard"></i><span>Ana səhifə</span></a>
-                                
-                            </li>
-                            
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Blogs</span></a>
-                                <ul class="collapse">
-                                    <li><a href="{{route('blog.create')}}">Add</a></li>
-                                    <li><a href="{{route('blog.index')}}">List</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Categories</span></a>
-                                <ul class="collapse">
-                                    <li><a href="barchart.html">Add</a></li>
-                                    <li><a href="linechart.html">List</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Products</span></a>
-                                <ul class="collapse">
-                                    <li><a href="barchart.html">Add</a></li>
-                                    <li><a href="linechart.html">List</a></li>
-                                </ul>
-                            </li>
-                            
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <!-- sidebar menu area end -->
-        <!-- main content area start -->
-        <div class="main-content">
-            <!-- header area start -->
-            <div class="header-area">
-                <div class="row align-items-center">
-                    <!-- nav and search button -->
-                    <div class="col-md-6 col-sm-8 clearfix">
-                        <div class="nav-btn pull-left">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- header area end -->
-            
-        </div>
-        <!-- main content area end -->
-        
-    </div>
-    <!-- page container area end -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!--  Header End -->
