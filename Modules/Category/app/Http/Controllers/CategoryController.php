@@ -60,10 +60,16 @@ class CategoryController extends Controller
 
     }
 
-    public function show($id)
-    {
-        return view('category::show');
+    public function show($id){
+        $category = Category::find($id);
+
+        if (!$category) {
+            return redirect()->route('category.index')->with('error', 'Cateqoriya bulunamadı');
+        }
+
+        return view('category::show', compact('category'));
     }
+
 
     public function edit($id)
     {
@@ -102,8 +108,17 @@ class CategoryController extends Controller
 
 
     
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $category = Category::find($id);
+
+        if (!$category) {
+            return redirect()->back()->with('error', 'Cateqoriya bulunamadı');
+        }
+
+        $category->delete();
+
+        return redirect('/categories')->with('success', 'Cateqoriya uğurla silindi');
     }
+
+
 }
