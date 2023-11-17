@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index(){
         $lang = config('app.locale');
 
-        $categories = Category::select("title_$lang as title", "description_$lang as description", "image")->get();
+        $categories = Category::select("id","title_$lang as title", "description_$lang as description", "image")->get();
 
         return view('category::index', get_defined_vars());
     }
@@ -67,14 +67,39 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        return view('category::edit');
+        $catedit = Category::find($id);
+        return view('category::edit', get_defined_vars());
     }
 
     
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
+    public function update(CategoryRequest $request){
+        $category = Category::find($request->id);
+
+        if (!$category) {
+            return redirect()->back()->with('error', 'Cateqoriya tapılmadı');
+        }
+
+        $category->title_az = $request->title_az;
+        $category->title_en = $request->title_en;
+        $category->title_ru = $request->title_ru;
+        $category->description_az = $request->description_az;
+        $category->description_en = $request->description_en;
+        $category->description_ru = $request->description_ru;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = 'category_' . Str::random(13) . '.' . $image->getClientOriginalExtension();
+            $directory = 'category/';
+            $image->move($directory, $name);
+            $name = $directory . $name;
+            $category->image = $name;
+        }
+
+        $category->save();
+
+        return redirect()->back()->with('success', 'Cateqoriya uğurla yeniləndi');
     }
+
 
     
     public function destroy($id)

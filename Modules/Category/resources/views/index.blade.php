@@ -1,7 +1,7 @@
 @extends('core::layouts.master')
 
 @section('content')
-<h1>Product list</h1>
+<h1>Catagories list</h1>
 
 <table id="myTable">
     <thead>
@@ -10,6 +10,8 @@
         <th scope="col">Image</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
+        <th scope="col"></th>
+
       </tr>
     </thead>
     <tbody>
@@ -19,6 +21,10 @@
             <td><img src="{{asset($cat->image)}}" style="width: 200px; height: 100px"></td>
             <td>{{$cat->title}}</td>
             <td>{{$cat->description}}</td>
+            <td><a href="{{ route('category.edit', $cat->id) }}"><button type="button" class="btn btn-warning">Edit</button></a>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+
         </tr>
         @endforeach
      
