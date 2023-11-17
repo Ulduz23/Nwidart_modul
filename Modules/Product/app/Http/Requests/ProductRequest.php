@@ -12,7 +12,6 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image'=>'required|image|mimes:jpg,png,jpeg,gif,svg,webp,jfif,avif|max:6000',
             'title_az' => 'required',
             'title_en' => 'required',
             'title_ru' => 'required',
@@ -21,6 +20,9 @@ class ProductRequest extends FormRequest
             'description_ru' => 'required',
 
         ];
+        if ($this->isMethod('post')) {
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif|max:6000';
+        }
     }
 
     /**
