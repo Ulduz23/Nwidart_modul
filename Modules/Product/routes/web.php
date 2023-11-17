@@ -21,4 +21,4 @@ Route::get('/product/gallery', [ProductController::class, 'gallerylist'])->name(
 Route::post('/product/galleryadd', [ProductController::class, 'galleryadd'])->name('galleryadd');
 Route::get('/product/galleredit/{gallery}', [ProductController::class, 'galleryedit'])->name('galleryedit');
 Route::post('/product/galleryupdate', [ProductController::class, 'galleryupdate'])->name('galleryupdate');
-Route::post('/product/gallerydelete', [ProductController::class, 'gallerydelete'])->name('gallerydelete');
+Route::get('/product/gallerydelete/{id}', [ProductController::class, 'gallerydelete'])->name('gallerydelete');

@@ -188,4 +188,11 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Galeri başarıyla güncellendi');
     }
 
+    public function gallerydelete($id){
+        $gallery = Gallery::find($id);
+
+        $gallery->delete();
+
+        return redirect()->back()->with('success', 'Gallery uğurla silindi');
+    }
 }
