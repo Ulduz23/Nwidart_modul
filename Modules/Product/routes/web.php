@@ -17,3 +17,5 @@ use Modules\Product\app\Http\Controllers\ProductController;
 Route::group([], function () {
     Route::resource('products', ProductController::class)->names('product');
 });
+Route::get('/product/gallery', [ProductController::class, 'gallerylist'])->name('gallerylist');
+Route::post('/product/galleryadd', [ProductController::class, 'galleryadd'])->name('galleryadd');
