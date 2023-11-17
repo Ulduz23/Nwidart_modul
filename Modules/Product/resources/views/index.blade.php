@@ -24,8 +24,12 @@
             <td>{{$pr->title}}</td>
             <td>{{$pr->description}}</td>
             <td><a href="{{ route('product.edit', $pr->id) }}"><button type="button" class="btn btn-warning">Edit</button></a>
-              <a href="{{ route('product.destroy', $pr->id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
-          </td>
+              <form action="{{ route('product.destroy', $pr->id) }}" method="post">
+                @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger">Delete</button>
+              </form>
+            </td>
         </tr>
         @endforeach
      
