@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $image;
+
     public function index(){
         $lang = config('app.locale');
 
@@ -111,5 +110,34 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function gallerylist(){
+        $lang = config('app.locale');
+
+        $gallery = Gallery::select("id","product_id","image")
+        ->with(['getProducts' => function ($query) use ($lang) {
+            $query->select("id", "title_$lang as title");
+        }])
+        ->get();
+        $product = Product::select("id","title_$lang as title")->get();
+
+    
+        return view('product::galleryadd', get_defined_vars());
+    }
+
+    public function galleryadd(){    
+        if($this->image)
+        {
+            $imagesname = '';
+            foreach($this->image as $key=>$image)
+            {
+                $imgName = Carbon::now()->timestamp. $key. '.' . $image->extension();
+                $image->storeAs('products',$imgName);
+                $imagesname = $imagesname . ',' . $imgName;
+            }
+            $product->image = $imagesname;
+        }
     }
 }

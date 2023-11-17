@@ -48,7 +48,7 @@
         <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter" name="image" multiple>
       </div>
       @if($image)
-                @foreach($image as $img)
+                @foreach($image as $img) 
                     <img src="{{$img->temporaryUrl()}}\" />
                 @endforeach
             @endif  

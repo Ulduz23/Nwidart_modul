@@ -19,10 +19,15 @@
         <tr>
             <th scope="row">{{$cat->id}}</th>
             <td><img src="{{asset($cat->image)}}" style="width: 200px; height: 100px"></td>
-            <td>{{$cat->title}}</td>
+            <td>{{ $cat->title}}</td>
             <td>{{$cat->description}}</td>
-            <td><a href="{{ route('category.edit', $cat->id) }}"><button type="button" class="btn btn-warning">Edit</button></a>
-                <a href="{{ route('category.destroy', $cat->id) }}"><button type="button" class="btn btn-danger">Delete</button></a>
+            <td>
+              <a href="{{ route('category.edit', $cat->id) }}"><button class="btn btn-warning">Edit</button></a>
+              <form action="{{ route('category.destroy', $cat->id) }}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger">Delete</button>
+              </form>
             </td>
 
         </tr>
@@ -30,6 +35,7 @@
      
     </tbody>
 </table>
+  
 <h1>ADD</h1>
 @if($errors->any())
     <div class="alert alert-danger">

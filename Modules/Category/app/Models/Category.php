@@ -24,6 +24,12 @@ class Category extends Model
         'image',
       ];
           
+
+    // public function title() :?string
+    // {
+    //     return $this->getAttribute("title_" . str_replace('_', '-', app()->getLocale())) ?? $this->getAttribute('title_az');
+    // }
+
     protected static function newFactory(): CategoryFactory
     {
         //return CategoryFactory::new();

@@ -20,7 +20,7 @@
         <tr>
             <th scope="row">{{$pr->id}}</th>
             <td><img src="{{asset($pr->image)}}" style="width: 200px; height: 100px"></td>
-            <td>{{$pr->category->title}}</td>
+            <td>{{ $pr->category ? $pr->category->title : 'Kategoriya silinib' }}</td>
             <td>{{$pr->title}}</td>
             <td>{{$pr->description}}</td>
             <td><a href="{{ route('product.edit', $pr->id) }}"><button type="button" class="btn btn-warning">Edit</button></a>

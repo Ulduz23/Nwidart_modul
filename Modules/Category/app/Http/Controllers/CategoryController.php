@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index(){
         $lang = config('app.locale');
 
-        $categories = Category::select("id","title_$lang as title", "description_$lang as description", "image")->get();
+        $categories = Category::select("id","title_$lang as title", "description_$lang as description", "image")->paginate(5);
 
         return view('category::index', get_defined_vars());
     }
@@ -108,17 +108,10 @@ class CategoryController extends Controller
 
 
     
-    public function destroy($id){
-        $category = Category::find($id);
-
-        if (!$category) {
-            return redirect()->back()->with('error', 'Cateqoriya bulunamadı');
-        }
-
+    public function destroy(Category $category){
         $category->delete();
 
         return redirect('/categories')->with('success', 'Cateqoriya uğurla silindi');
     }
-
-
+    
 }
