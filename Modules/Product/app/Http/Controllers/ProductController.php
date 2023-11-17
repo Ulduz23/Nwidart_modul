@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public $image;
-
     public function index(){
         $lang = config('app.locale');
 
@@ -62,14 +60,18 @@ class ProductController extends Controller
 
     }
     
-    public function show($id)
-    {
-        return view('product::show');
+    public function show($id){
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->route('product.index')->with('error', 'Mehsul bulunamadı');
+        }
+
+        return view('product::show', compact('product'));
     }
 
     
-    public function edit($id)
-    {
+    public function edit($id){
         $lang = config('app.locale');
         $edit = Product::find($id);
         $categories = Category::select("id","title_$lang as title")->get();
@@ -107,9 +109,10 @@ class ProductController extends Controller
     }
     
 
-    public function destroy($id)
-    {
-        //
+    public function destroy(Product $product){
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Məhsul uğurla silindi');
     }
 
 
@@ -121,23 +124,40 @@ class ProductController extends Controller
             $query->select("id", "title_$lang as title");
         }])
         ->get();
-        $product = Product::select("id","title_$lang as title")->get();
+        $products = Product::select("id","title_$lang as title")->get();
 
     
         return view('product::galleryadd', get_defined_vars());
     }
 
-    public function galleryadd(){    
-        if($this->image)
-        {
-            $imagesname = '';
-            foreach($this->image as $key=>$image)
-            {
-                $imgName = Carbon::now()->timestamp. $key. '.' . $image->extension();
-                $image->storeAs('products',$imgName);
-                $imagesname = $imagesname . ',' . $imgName;
+    public function galleryadd(Request $request){    
+        $gallery = new Gallery();
+        $gallery->product_id = $request->product_id;
+        $imagePaths = [];
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $name = 'gallery_' . Str::random(13) . '.' . $image->getClientOriginalExtension();
+                $directory = 'gallery/';
+                $image->move($directory, $name);
+                $imagePaths[] = $directory . $name;
             }
-            $product->image = $imagesname;
         }
+
+        $imageString = implode(',', $imagePaths);
+        $gallery->image = $imageString;
+        $gallery->save();
+
+        return redirect()->back()->with('success', 'Şəkillər uğurla əlavə edildi');
+
+    }
+    public function galleryedit($id){
+        $lang = config('app.locale');
+        $edit = Gallery::find($id);
+
+        $products = Product::select("id","title_$lang as title")->paginate(10);
+
+    
+        return view('product::galleryedit', get_defined_vars());
     }
 }
