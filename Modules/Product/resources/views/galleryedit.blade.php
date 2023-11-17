@@ -1,7 +1,7 @@
 @extends('core::layouts.master')
 
 @section('content')
-<h1>Catagories edit</h1>
+<h1>Gallery edit</h1>
 
 @if($errors->any())
     <div class="alert alert-danger">
@@ -12,14 +12,11 @@
         </ul>
     </div>
 @endif
-
+<br><br>
 <form method="POST" action="{{ route('galleryupdate') }}" enctype="multipart/form-data">
     @csrf
 
-    {{-- <img src="{{url($catedit->image)}}" style="font-weight:70px; height:60px"><br> --}}
-
     <div class="form-group">
-      <label for="exampleInputEmail1">Image</label>
         @foreach(explode(',', $edit->image) as $imagePath)
             <img src="{{ asset($imagePath) }}" alt="Gallery Image" width="100px" height="100px">
         @endforeach

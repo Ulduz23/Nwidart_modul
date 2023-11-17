@@ -160,4 +160,32 @@ class ProductController extends Controller
     
         return view('product::galleryedit', get_defined_vars());
     }
+
+    public function galleryUpdate(Request $request){
+        $gallery = Gallery::find($request->id);
+
+        if (!$gallery) {
+            return redirect()->back()->with('error', 'Galeri bulunamadı');
+        }
+        $gallery->product_id = $request->product_id;
+
+        $existingImages = explode(',', $gallery->image);
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $name = 'gallery_' . Str::random(13) . '.' . $image->getClientOriginalExtension();
+                $directory = 'gallery/';
+                $image->move($directory, $name);
+                $existingImages[] = $directory . $name;
+            }
+        }
+
+        $imageString = implode(',', $existingImages);
+
+        $gallery->image = $imageString;
+        $gallery->save();
+
+        return redirect()->back()->with('success', 'Galeri başarıyla güncellendi');
+    }
+
 }
