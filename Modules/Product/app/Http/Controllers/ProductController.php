@@ -71,7 +71,10 @@ class ProductController extends Controller
     
     public function edit($id)
     {
+        $lang = config('app.locale');
         $edit = Product::find($id);
+        $categories = Category::select("id","title_$lang as title")->get();
+
         return view('product::edit', get_defined_vars());
     }
 
@@ -82,7 +85,7 @@ class ProductController extends Controller
         if (!$product) {
             return redirect()->back()->with('error', 'Məhsul tapılmadı');
         }
-
+        $product->cat_id = $request->cat_id;
         $product->title_az = $request->title_az;
         $product->title_en = $request->title_en;
         $product->title_ru = $request->title_ru;

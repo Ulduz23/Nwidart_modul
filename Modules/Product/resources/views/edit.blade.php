@@ -22,7 +22,19 @@
     <div class="form-group">
       <label for="exampleInputEmail1">Image</label>
       <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter" name="image" value="{{$edit->image}}">
-    </div>
+    </div><br>
+
+    <label for="exampleInputEmail1">Category</label>
+      <select class="form-control select2 form-select" name="cat_id" data-placeholder="Kateqoriya seçin">
+        @foreach($categories as $cats)
+          @if($edit->cat_id==$cats->id)
+              <option selected value="{{$cats->id}}">{{$cats->title}}</option>
+          @else
+              <option value="{{$cats->id}}">{{$cats->title}}</option>
+          @endif
+        @endforeach
+      </select>
+    
     <div class="form-group">
       <label for="exampleInputEmail1">Title (az)</label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter" name="title_az" value="{{$edit->title_az}}">

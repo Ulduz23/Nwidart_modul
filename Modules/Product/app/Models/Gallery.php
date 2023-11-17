@@ -21,8 +21,8 @@ class Gallery extends Model
     {
         //return GalleryFactory::new();
     }
-    public function galleryproducts()
+    public function getProducts()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 }
