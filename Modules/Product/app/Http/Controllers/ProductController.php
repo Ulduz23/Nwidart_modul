@@ -57,8 +57,8 @@ class ProductController extends Controller
             $name = $directory . $name;
             $product->image = $name;
         }
-
-        return redirect()->back()->with($product->save ? 'success' : 'error', true);
+        $product->save();
+        return redirect()->back()->with('success', 'Məhsul uğurla əlavə edildi');
         
 
     }
